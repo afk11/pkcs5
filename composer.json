@@ -1,5 +1,6 @@
 {
   "name": "afk11/pkcs5",
+  "license": "MIT",
   "description": "Library for PKCS5 v2 key derivation & and message encryption",
   "keywords": ["pkcs5", "pbkdf2", "aes", "encryption", "key", "derivation", "ecdsa"],
   "require": {

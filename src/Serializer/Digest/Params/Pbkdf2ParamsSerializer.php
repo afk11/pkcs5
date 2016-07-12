@@ -13,9 +13,9 @@ class Pbkdf2ParamsSerializer
 {
     /**
      * @param Pbkdf2Params $params
-     * @return string
+     * @return Sequence
      */
-    public function serialize(Pbkdf2Params $params)
+    public function getAsn(Pbkdf2Params $params)
     {
         $sequence = new Sequence(
             new OctetString($params->getSalt()),
@@ -31,5 +31,14 @@ class Pbkdf2ParamsSerializer
         }
         
         return $sequence->getBinary();
+    }
+
+    /**
+     * @param Pbkdf2Params $params
+     * @return string
+     */
+    public function serialize(Pbkdf2Params $params)
+    {
+        return $this->getAsn($params)->getBinary();
     }
 }

@@ -43,7 +43,7 @@ class Pkcs5v2Serializer
     private function getDigestParamsAsn(DigestParamsInterface $digestParams)
     {
         if ($digestParams instanceof Pbkdf2Params) {
-            return $this->pbkdf2ParamsSerializer->serialize($digestParams);
+            return $this->pbkdf2ParamsSerializer->getAsn($digestParams);
         }
 
         throw new \RuntimeException('Unsupported digest algorithm');
@@ -56,7 +56,7 @@ class Pkcs5v2Serializer
     private function getCipherParamsAsn(CipherParamsInterface $cipherParams)
     {
         if ($cipherParams instanceof AesParams) {
-            return $this->aesParamsSerializer->serialize($cipherParams);
+            return $this->aesParamsSerializer->getAsn($cipherParams);
         }
 
         throw new \RuntimeException('Unsupported cipher algorithm');

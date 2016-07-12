@@ -31,7 +31,7 @@ class Pbkdf2Params
      * @param int $iterationCount
      * @param int $keyLength
      */
-    public function __construct($method, $salt, $iterationCount, $keyLength = null)
+    public function __construct($method, $salt, $iterationCount, $keyLength)
     {
         if (!is_string($salt)) {
             throw new \RuntimeException('Salt must be a string');
@@ -41,8 +41,8 @@ class Pbkdf2Params
             throw new \RuntimeException('Iteration count must be numeric');
         }
 
-        if (!is_null($keyLength) && !is_numeric($keyLength)) {
-            throw new \RuntimeException('Iteration count must be numeric');
+        if (!is_numeric($keyLength)) {
+            throw new \RuntimeException('Key length must be numeric');
         }
 
         $this->salt = $salt;

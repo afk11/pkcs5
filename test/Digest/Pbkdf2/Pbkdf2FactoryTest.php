@@ -3,7 +3,6 @@
 namespace Afk11\Pkcs5\Tests\Digest\Pbkdf2;
 
 
-use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Digest;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 use Afk11\Pkcs5\Tests\AbstractTestCase;
@@ -14,7 +13,7 @@ class Pbkdf2FactoryTest extends AbstractTestCase
     {
         $factory = new Pbkdf2Factory();
         $params = $factory->pbkdf2();
-        $this->assertEquals(null, $params->getKeyLength());
+        $this->assertEquals(20, $params->getKeyLength());
         $this->assertEquals(2048, $params->getIterationCount());
         $this->assertEquals(Pbkdf2Factory::HMAC_WITH_SHA1, $params->getMethod());
         $this->assertInternalType('string', $params->getSalt());

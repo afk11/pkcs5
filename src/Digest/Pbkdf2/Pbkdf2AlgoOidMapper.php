@@ -25,7 +25,7 @@ class Pbkdf2AlgoOidMapper
      * @var array
      */
     private static $sizeMap = array(
-        Pbkdf2Factory::PBKDF2_WITH_SHA224 => 160 / 8,
+        Pbkdf2Factory::HMAC_WITH_SHA1 => 160 / 8,
         Pbkdf2Factory::PBKDF2_WITH_SHA224 => 224 / 8,
         Pbkdf2Factory::PBKDF2_WITH_SHA256 => 256 / 8,
         Pbkdf2Factory::PBKDF2_WITH_SHA384 => 384 / 8,
@@ -44,7 +44,7 @@ class Pbkdf2AlgoOidMapper
      * @param string $name
      * @return array
      */
-    public function getAlgoSizeByName($name)
+    public static function getAlgoSizeByName($name)
     {
         if (!array_key_exists($name, self::$sizeMap)) {
             throw new \RuntimeException('Unknown or unsupported pbkdf2 algorithm');

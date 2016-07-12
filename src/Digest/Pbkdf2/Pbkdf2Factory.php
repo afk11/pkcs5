@@ -25,6 +25,10 @@ class Pbkdf2Factory
             throw new \RuntimeException('Pbkdf2 method not supported');
         }
 
+        if (!is_numeric($keyLength)) {
+            $keyLength = Pbkdf2AlgoOidMapper::getAlgoSizeByName($method);
+        }
+
         if (!is_numeric($saltLen)) {
             throw new \RuntimeException('Salt length must be numeric');
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Afk11\Pkcs5\Cipher\Aes;
+namespace Afk11\Pkcs5\Cipher;
 
 use Afk11\Pkcs5\Cipher\CipherParamsInterface;
 use FG\ASN1\Universal\ObjectIdentifier;

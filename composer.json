@@ -1,0 +1,23 @@
+{
+  "name": "afk11/pkcs5",
+  "description": "Library for PKCS5 v2 key derivation & and message encryption",
+  "keywords": ["pkcs5", "pbkdf2", "aes", "encryption", "key", "derivation", "ecdsa"],
+  "require": {
+    "mdanter/ecc": "0.3",
+    "paragonie/random_compat": "2.0.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.4.*",
+    "squizlabs/php_codesniffer": "2.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Afk11\\Pkcs5\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Afk11\\Pkcs5\\Tests\\": "test/"
+    }
+  }
+}

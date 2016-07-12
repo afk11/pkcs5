@@ -30,7 +30,7 @@ class Pbkdf2ParamsSerializer
             $sequence[] = new AlgorithmIdentifier(Pbkdf2AlgoOidMapper::getOidByName($params->getMethod())->getContent());
         }
         
-        return $sequence->getBinary();
+        return $sequence;
     }
 
     /**

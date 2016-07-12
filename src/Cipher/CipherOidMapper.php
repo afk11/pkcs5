@@ -1,8 +1,7 @@
 <?php
 
-namespace Mdanter\Ecc\Serializer\Util;
+namespace Afk11\Pkcs5\Cipher\Aes;
 
-use Afk11\Pkcs5\Cipher\Aes\AesFactory;
 use Afk11\Pkcs5\Cipher\CipherParamsInterface;
 use FG\ASN1\Universal\ObjectIdentifier;
 
@@ -47,7 +46,7 @@ class CipherOidMapper
 
     /**
      * @param ObjectIdentifier $oid
-     * @return \Mdanter\Ecc\Primitives\GeneratorPoint
+     * @return string
      */
     public static function getCipherFromOid(ObjectIdentifier $oid)
     {

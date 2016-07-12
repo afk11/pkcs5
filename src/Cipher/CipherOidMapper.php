@@ -2,7 +2,7 @@
 
 namespace Afk11\Pkcs5\Cipher;
 
-use Afk11\Pkcs5\Cipher\CipherParamsInterface;
+use Afk11\Pkcs5\Cipher\Aes\AesFactory;
 use FG\ASN1\Universal\ObjectIdentifier;
 
 class CipherOidMapper

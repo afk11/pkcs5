@@ -2,7 +2,6 @@
 
 namespace Mdanter\Ecc\Serializer\Util;
 
-use Afk11\Pkcs5\Digest\DigestParamsInterface;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use FG\ASN1\Universal\ObjectIdentifier;
 
@@ -27,7 +26,7 @@ class DigestOidMapper
     }
 
     /**
-     * @param DigestParamsInterface $params
+     * @param string $name
      * @return ObjectIdentifier
      */
     public static function getOidByName($name)
@@ -45,7 +44,7 @@ class DigestOidMapper
      * @param ObjectIdentifier $oid
      * @return \Mdanter\Ecc\Primitives\GeneratorPoint
      */
-    public static function getCipherFromOid(ObjectIdentifier $oid)
+    public static function getNameByOid(ObjectIdentifier $oid)
     {
         $oidString = $oid->getContent();
         $invertedMap = array_flip(self::$oidMap);

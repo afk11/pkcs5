@@ -3,6 +3,7 @@
 namespace Afk11\Pkcs5\Tests\Digest\Pbkdf2;
 
 
+use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 use Afk11\Pkcs5\Tests\AbstractTestCase;
 
@@ -10,7 +11,7 @@ class Pbkdf2ParamsTest extends AbstractTestCase
 {
     public function testInstance()
     {
-        $method = 'sha256';
+        $method = Pbkdf2Factory::PBKDF2_WITH_SHA256;
         $salt = 'abcd01234';
         $iterCount = 1000;
         $keyLength = 32;
@@ -28,7 +29,7 @@ class Pbkdf2ParamsTest extends AbstractTestCase
      */
     public function testInvalidAlgo()
     {
-        $method = 'sha256';
+        $method = Pbkdf2Factory::PBKDF2_WITH_SHA256;
         $salt = 'abcd01234';
         $iterCount = 'blah';
         $keyLength = 32;

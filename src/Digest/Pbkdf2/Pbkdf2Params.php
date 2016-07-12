@@ -33,7 +33,7 @@ class Pbkdf2Params
      */
     public function __construct($method, $salt, $iterationCount, $keyLength = null)
     {
-        if (!in_array($method, hash_algos())) {
+        if (!in_array($method, Pbkdf2AlgoOidMapper::getNames())) {
             throw new \RuntimeException('Pbkdf2 method not supported');
         }
         

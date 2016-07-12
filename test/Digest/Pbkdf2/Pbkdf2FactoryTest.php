@@ -14,7 +14,7 @@ class Pbkdf2FactoryTest extends AbstractTestCase
         $params = $factory->pbkdf2();
         $this->assertEquals(null, $params->getKeyLength());
         $this->assertEquals(2048, $params->getIterationCount());
-        $this->assertEquals('sha1', $params->getMethod());
+        $this->assertEquals(Pbkdf2Factory::HMAC_WITH_SHA1, $params->getMethod());
         $this->assertInternalType('string', $params->getSalt());
         $this->assertEquals(8, strlen($params->getSalt()));
     }
@@ -22,7 +22,7 @@ class Pbkdf2FactoryTest extends AbstractTestCase
     public function testFactoryParams()
     {
         $factory = new Pbkdf2Factory();
-        $algo = 'sha256';
+        $algo = Pbkdf2Factory::PBKDF2_WITH_SHA256;
         $i = 100000;
         $keylen = 32;
         $params = $factory->pbkdf2($algo, $i, $keylen);

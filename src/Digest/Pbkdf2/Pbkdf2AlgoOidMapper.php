@@ -2,6 +2,8 @@
 
 namespace Afk11\Pkcs5\Digest\Pbkdf2;
 
+use FG\ASN1\Universal\ObjectIdentifier;
+
 class Pbkdf2AlgoOidMapper
 {
     const HMAC_WITH_SHA1 = '1.2.840.113549.2.7';
@@ -55,7 +57,7 @@ class Pbkdf2AlgoOidMapper
 
     /**
      * @param string $name
-     * @return array
+     * @return ObjectIdentifier
      */
     public static function getOidByName($name)
     {
@@ -63,6 +65,22 @@ class Pbkdf2AlgoOidMapper
             throw new \RuntimeException('Unknown or unsupported pbkdf2 algorithm');
         }
 
-        return self::$oidMap[$name];
+        return new ObjectIdentifier(self::$oidMap[$name]);
+    }
+    
+    /**
+     * @param ObjectIdentifier $oid
+     * @return \Mdanter\Ecc\Primitives\GeneratorPoint
+     */
+    public static function getNameFromOid(ObjectIdentifier $oid)
+    {
+        $oidString = $oid->getContent();
+        $invertedMap = array_flip(self::$oidMap);
+
+        if (array_key_exists($oidString, $invertedMap)) {
+            return $invertedMap[$oidString];
+        }
+
+        throw new \RuntimeException('Invalid data: unsupported OID');
     }
 }

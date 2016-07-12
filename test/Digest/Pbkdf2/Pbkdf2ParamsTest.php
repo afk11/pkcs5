@@ -47,4 +47,18 @@ class Pbkdf2ParamsTest extends AbstractTestCase
         $keyLength = 'asdf';
         new Pbkdf2Params($method, $salt, $iterCount, $keyLength);
     }
+
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Salt must be a string
+     */
+    public function testInvalidSalt()
+    {
+        $method = Pbkdf2Factory::PBKDF2_WITH_SHA224;
+        $salt = false;
+        $iterCount = 1000;
+        $keyLength = 32;
+        new Pbkdf2Params($method, $salt, $iterCount, $keyLength);
+    }
 }

@@ -28,7 +28,7 @@ class Pbkdf2Factory
         $salt = random_bytes($saltLen);
         return new Pbkdf2Params($method, $salt, $iterationCount, $keyLength);
     }
-    
+
     /**
      * @param int $iterationCount
      * @param int $keyLength
@@ -59,7 +59,7 @@ class Pbkdf2Factory
      */
     public function pbkdf2_sha256($iterationCount = 2048, $keyLength = null, $saltLen = 8)
     {
-        return $this->pbkdf2(self::PBKDF2_WITH_SHA224, $iterationCount, $keyLength, $saltLen);
+        return $this->pbkdf2(self::PBKDF2_WITH_SHA256, $iterationCount, $keyLength, $saltLen);
     }
 
     /**
@@ -70,7 +70,7 @@ class Pbkdf2Factory
      */
     public function pbkdf2_sha384($iterationCount = 2048, $keyLength = null, $saltLen = 8)
     {
-        return $this->pbkdf2(self::PBKDF2_WITH_SHA224, $iterationCount, $keyLength, $saltLen);
+        return $this->pbkdf2(self::PBKDF2_WITH_SHA384, $iterationCount, $keyLength, $saltLen);
     }
 
     /**
@@ -81,6 +81,6 @@ class Pbkdf2Factory
      */
     public function pbkdf2_sha512($iterationCount = 2048, $keyLength = null, $saltLen = 8)
     {
-        return $this->pbkdf2(self::PBKDF2_WITH_SHA224, $iterationCount, $keyLength, $saltLen);
+        return $this->pbkdf2(self::PBKDF2_WITH_SHA512, $iterationCount, $keyLength, $saltLen);
     }
 }

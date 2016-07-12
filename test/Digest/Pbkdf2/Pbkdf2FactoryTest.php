@@ -3,7 +3,9 @@
 namespace Afk11\Pkcs5\Tests\Digest\Pbkdf2;
 
 
+use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Digest;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
+use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 use Afk11\Pkcs5\Tests\AbstractTestCase;
 
 class Pbkdf2FactoryTest extends AbstractTestCase
@@ -30,5 +32,28 @@ class Pbkdf2FactoryTest extends AbstractTestCase
         $this->assertEquals($i, $params->getIterationCount());
         $this->assertEquals($algo, $params->getMethod());
         $this->assertInternalType('string', $params->getSalt());
+    }
+
+    public function getFactoryVectors()
+    {
+        $pbkdf2 = new Pbkdf2Factory();
+        return [
+            [$pbkdf2, 'pbkdf2_sha1', Pbkdf2Factory::HMAC_WITH_SHA1],
+            [$pbkdf2, 'pbkdf2_sha224', Pbkdf2Factory::PBKDF2_WITH_SHA224],
+            [$pbkdf2, 'pbkdf2_sha256', Pbkdf2Factory::PBKDF2_WITH_SHA256],
+            [$pbkdf2, 'pbkdf2_sha384', Pbkdf2Factory::PBKDF2_WITH_SHA384],
+            [$pbkdf2, 'pbkdf2_sha512', Pbkdf2Factory::PBKDF2_WITH_SHA512],
+        ];
+    }
+
+    /**
+     * @dataProvider getFactoryVectors
+     */
+    public function testFactoryMethods(Pbkdf2Factory $pbkdf2, $method, $expectedAlgo)
+    {
+        /** @var Pbkdf2Params $params */
+        $params = $pbkdf2->{$method}();
+        $this->assertInstanceOf(Pbkdf2Params::class, $params);
+        $this->assertEquals($expectedAlgo, $params->getMethod());
     }
 }

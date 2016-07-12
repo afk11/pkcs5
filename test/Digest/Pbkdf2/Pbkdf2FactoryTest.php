@@ -47,6 +47,9 @@ class Pbkdf2FactoryTest extends AbstractTestCase
     }
 
     /**
+     * @param Pbkdf2Factory $pbkdf2
+     * @param string $method
+     * @param string $expectedAlgo
      * @dataProvider getFactoryVectors
      */
     public function testFactoryMethods(Pbkdf2Factory $pbkdf2, $method, $expectedAlgo)
@@ -55,5 +58,15 @@ class Pbkdf2FactoryTest extends AbstractTestCase
         $params = $pbkdf2->{$method}();
         $this->assertInstanceOf(Pbkdf2Params::class, $params);
         $this->assertEquals($expectedAlgo, $params->getMethod());
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Salt length must be numeric
+     */
+    public function testInvalidSaltLen()
+    {
+        $factory = new Pbkdf2Factory();
+        $factory->pbkdf2(Pbkdf2Factory::PBKDF2_WITH_SHA224, 100, null, 'string');
     }
 }

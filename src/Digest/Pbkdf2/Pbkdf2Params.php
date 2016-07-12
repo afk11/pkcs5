@@ -33,11 +33,15 @@ class Pbkdf2Params
      */
     public function __construct($method, $salt, $iterationCount, $keyLength = null)
     {
-        if (!in_array($method, Pbkdf2AlgoOidMapper::getNames())) {
-            throw new \RuntimeException('Pbkdf2 method not supported');
+        if (!is_string($salt)) {
+            throw new \RuntimeException('Salt must be a string');
         }
-        
+
         if (!is_numeric($iterationCount)) {
+            throw new \RuntimeException('Iteration count must be numeric');
+        }
+
+        if (!is_null($keyLength) && !is_numeric($keyLength)) {
             throw new \RuntimeException('Iteration count must be numeric');
         }
 

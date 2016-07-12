@@ -21,6 +21,10 @@ class Pbkdf2Factory
      */
     public function pbkdf2($method = self::HMAC_WITH_SHA1, $iterationCount = 2048, $keyLength = null, $saltLen = 8)
     {
+        if (!in_array($method, Pbkdf2AlgoOidMapper::getNames())) {
+            throw new \RuntimeException('Pbkdf2 method not supported');
+        }
+
         if (!is_numeric($saltLen)) {
             throw new \RuntimeException('Salt length must be numeric');
         }

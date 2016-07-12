@@ -38,14 +38,13 @@ class Pbkdf2ParamsTest extends AbstractTestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Pbkdf2 method not supported
      */
     public function testInvalidKeyLength()
     {
         $method = 'invalid';
         $salt = 'abcd01234';
         $iterCount = 1000;
-        $keyLength = 32;
+        $keyLength = 'asdf';
         new Pbkdf2Params($method, $salt, $iterCount, $keyLength);
     }
 }

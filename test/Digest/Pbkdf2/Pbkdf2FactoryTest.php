@@ -60,6 +60,17 @@ class Pbkdf2FactoryTest extends AbstractTestCase
         $this->assertEquals($expectedAlgo, $params->getMethod());
     }
 
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Pbkdf2 method not supported
+     */
+    public function testInvalidMethod()
+    {
+        $factory = new Pbkdf2Factory();
+        $factory->pbkdf2('unknown', 100);
+    }
+
     /**
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Salt length must be numeric

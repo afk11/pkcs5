@@ -67,7 +67,7 @@ class Pkcs5v2Serializer
      * @param CipherParamsInterface $cipherParams
      * @return Sequence
      */
-    public function serialize(DigestParamsInterface $digestParams, CipherParamsInterface $cipherParams)
+    public function getPkcs5Data(DigestParamsInterface $digestParams, CipherParamsInterface $cipherParams)
     {
         return new Sequence(
             new ObjectIdentifier(self::OID),
@@ -76,5 +76,15 @@ class Pkcs5v2Serializer
                 $this->getCipherParamsAsn($cipherParams)
             )
         );
+    }
+
+    /**
+     * @param DigestParamsInterface $digestParams
+     * @param CipherParamsInterface $cipherParams
+     * @return string
+     */
+    public function serialize(DigestParamsInterface $digestParams, CipherParamsInterface $cipherParams)
+    {
+        return $this->getPkcs5Data($digestParams, $cipherParams)->getBinary();
     }
 }

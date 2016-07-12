@@ -15,7 +15,9 @@ class DigesterTest extends AbstractTestCase
         $pbkdf2Params = (new Pbkdf2Factory())->pbkdf2();
         
         $digester = new Digester();
-        $digester->digest('data', $pbkdf2Params);
+        $string = $digester->digest('data', $pbkdf2Params);
+        $this->assertInternalType('string', $string);
+        $this->assertEquals($pbkdf2Params->getKeyLength(), strlen($string));
     }
 
     /**

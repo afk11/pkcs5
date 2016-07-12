@@ -4,7 +4,7 @@
   "description": "Library for PKCS5 v2 key derivation & and message encryption",
   "keywords": ["pkcs5", "pbkdf2", "aes", "encryption", "key", "derivation", "ecdsa"],
   "require": {
-    "mdanter/ecc": "0.3",
+    "fgrosse/phpasn1": "1.5.1",
     "paragonie/random_compat": "2.0.*"
   },
   "require-dev": {

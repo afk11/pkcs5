@@ -3,7 +3,6 @@
 namespace Afk11\Pkcs5\Digest;
 
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Digest;
-use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 
 class Digester
@@ -15,7 +14,7 @@ class Digester
     
     public function __construct()
     {
-        $this->pbkdf2 = new Pbkdf2Factory();
+        $this->pbkdf2 = new Pbkdf2Digest();
     }
 
     /**

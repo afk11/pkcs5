@@ -2,7 +2,9 @@
 
 namespace Afk11\Pkcs5\Digest\Pbkdf2;
 
-class Pbkdf2Params
+use Afk11\Pkcs5\Digest\DigestParamsInterface;
+
+class Pbkdf2Params implements DigestParamsInterface
 {
     /**
      * @var string

@@ -7,5 +7,5 @@ interface DigestParamsInterface
     /**
      * @return string
      */
-    public function getName();
+    public function getMethod();
 }

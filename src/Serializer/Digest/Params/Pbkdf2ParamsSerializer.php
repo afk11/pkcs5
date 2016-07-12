@@ -18,7 +18,7 @@ class Pbkdf2ParamsSerializer
     public function getAsn(Pbkdf2Params $params)
     {
         $sequence = new Sequence(
-            new OctetString($params->getSalt()),
+            new OctetString(unpack("H*", $params->getSalt())[1]),
             new Integer($params->getIterationCount())
         );
 
@@ -27,7 +27,7 @@ class Pbkdf2ParamsSerializer
         }
 
         if ($params->getMethod() !== null) {
-            $sequence[] = new AlgorithmIdentifier(Pbkdf2AlgoOidMapper::getOidByName($params->getMethod()));
+            $sequence[] = new AlgorithmIdentifier(Pbkdf2AlgoOidMapper::getOidByName($params->getMethod())->getContent());
         }
         
         return $sequence->getBinary();

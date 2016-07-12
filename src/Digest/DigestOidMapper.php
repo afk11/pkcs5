@@ -30,10 +30,10 @@ class DigestOidMapper
      * @param DigestParamsInterface $params
      * @return ObjectIdentifier
      */
-    public static function getDigestOid(DigestParamsInterface $params)
+    public static function getOidByName($name)
     {
-        if (array_key_exists($params->getMethod(), self::$oidMap)) {
-            $oidString = self::$oidMap[$params->getMethod()];
+        if (array_key_exists($name, self::$oidMap)) {
+            $oidString = self::$oidMap[$name];
 
             return new ObjectIdentifier($oidString);
         }

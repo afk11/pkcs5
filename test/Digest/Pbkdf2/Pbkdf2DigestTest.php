@@ -45,4 +45,23 @@ class Pbkdf2DigestTest extends AbstractTestCase
         $data = $pbkdf2->hash($hashSubjectData, $params);
         $this->assertEquals(pack("H*", $expectedHash), $data);
     }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unknown algorithm
+     */
+    public function testMockWithUnknownInteralHashAlgo()
+    {
+        $mock = $this->getMockBuilder(Pbkdf2Params::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getMethod','getKeyLength','getSalt','getIterationCount'])
+            ->getMock();
+
+        $mock->expects($this->any())
+            ->method('getMethod')
+            ->willReturn('unknown');
+
+        $pbkdf2 = new Pbkdf2Digest();
+        $pbkdf2->hash('test', $mock);
+    }
 }

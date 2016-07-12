@@ -12,13 +12,13 @@ class Pbkdf2Digest
         Pbkdf2Factory::PBKDF2_WITH_SHA512 => 'sha512'
     ];
 
-    private function getPHPName($publicName)
+    private function getPHPName(Pbkdf2Params $params)
     {
-        if (!array_key_exists($publicName, self::$mapToNative)) {
+        if (!array_key_exists($params->getMethod(), self::$mapToNative)) {
             throw new \RuntimeException('Unknown algorithm');
         }
 
-        return self::$mapToNative[$publicName];
+        return self::$mapToNative[$params->getMethod()];
     }
 
     /**
@@ -29,6 +29,6 @@ class Pbkdf2Digest
     public function hash($password, Pbkdf2Params $params)
     {
         $keyLength = $params->getKeyLength();
-        return hash_pbkdf2($this->getPHPName($params->getMethod()), $password, $params->getSalt(), $params->getIterationCount(), $keyLength, true);
+        return hash_pbkdf2($this->getPHPName($params), $password, $params->getSalt(), $params->getIterationCount(), $keyLength, true);
     }
 }

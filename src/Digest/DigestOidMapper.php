@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdanter\Ecc\Serializer\Util;
+namespace Afk11\Pkcs5\Digest\Pbkdf2;
 
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use FG\ASN1\Universal\ObjectIdentifier;

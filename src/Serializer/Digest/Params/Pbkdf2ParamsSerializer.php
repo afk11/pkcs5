@@ -2,6 +2,7 @@
 
 namespace Afk11\Pkcs5\Serializer\Digest\Params;
 
+use Afk11\Pkcs5\Digest\DigestOidMapper;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2AlgoOidMapper;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 use FG\ASN1\Universal\Integer;
@@ -17,20 +18,23 @@ class Pbkdf2ParamsSerializer
      */
     public function getAsn(Pbkdf2Params $params)
     {
-        $sequence = new Sequence(
+        $inner = new Sequence(
             new OctetString(unpack("H*", $params->getSalt())[1]),
             new Integer($params->getIterationCount())
         );
 
         if ($params->getKeyLength() !== null) {
-            $sequence[] = new Integer($params->getKeyLength());
+            $inner[] = new Integer($params->getKeyLength());
         }
 
         if ($params->getMethod() !== null) {
-            $sequence[] = new AlgorithmIdentifier(Pbkdf2AlgoOidMapper::getOidByName($params->getMethod())->getContent());
+            $inner[] = new AlgorithmIdentifier(Pbkdf2AlgoOidMapper::getOidByName($params->getMethod())->getContent());
         }
-        
-        return $sequence;
+
+        return new Sequence(
+            DigestOidMapper::getOidByName('pkcs5PBKDF2'),
+            $inner
+        );
     }
 
     /**

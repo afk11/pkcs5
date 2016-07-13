@@ -2,8 +2,10 @@
 
 namespace Afk11\Pkcs5\Serializer\Digest\Params;
 
+use Afk11\Pkcs5\Digest\DigestFactory;
 use Afk11\Pkcs5\Digest\DigestOidMapper;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2AlgoOidMapper;
+use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Factory;
 use Afk11\Pkcs5\Digest\Pbkdf2\Pbkdf2Params;
 use FG\ASN1\Universal\Integer;
 use FG\ASN1\Universal\OctetString;
@@ -32,7 +34,7 @@ class Pbkdf2ParamsSerializer
         }
 
         return new Sequence(
-            DigestOidMapper::getOidByName('pkcs5PBKDF2'),
+            DigestOidMapper::getOidByName(Pbkdf2Factory::NAME_PBKDF2),
             $inner
         );
     }

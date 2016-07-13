@@ -4,7 +4,7 @@ namespace Afk11\Pkcs5\Digest\Pbkdf2;
 
 class Pbkdf2Factory
 {
-    const NAME_PBKDF2 = 'pcks5PBKDF2';
+    const NAME_PBKDF2 = 'pkcs5PBKDF2';
 
     const HMAC_WITH_SHA1 = 'hmacWithSHA1';
     const PBKDF2_WITH_SHA224 = 'hmacWithSHA224';
